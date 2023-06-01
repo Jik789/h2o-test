@@ -1,12 +1,12 @@
-import Button from '../../components/Button/Button';
-import SearchPanel from '../../components/SearchPanel/SearchPanel';
+import MainPage from '../../page/MainPage';
+import Navigation from '../Navigation/Navigation';
+import styles from './App.module.scss';
 
 function App() {
   return (
-    <div>
-      <h1>Поиск GitHub</h1>
-      <SearchPanel></SearchPanel>
-      <Button setClick={() => console.log('123')} title={'Искать'}></Button>
+    <div className={styles.appContainer}>
+      <Navigation />
+      <MainPage />
     </div>
   );
 }
