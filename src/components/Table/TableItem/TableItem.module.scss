@@ -1,0 +1,12 @@
+@import '../../../utils/variables.scss';
+
+td {
+  &:hover {
+    cursor: pointer;
+    color: $mainColor;
+  }
+}
+
+tr .elementBorder {
+  border-right: 2px solid $mainColor;
+}

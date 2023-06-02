@@ -1,0 +1,20 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.imageContainer {
+  display: flex;
+  align-items: center;
+}
+
+.userName {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.userPost {
+  font-size: 12px;
+  color: rgb(168, 168, 168);
+}

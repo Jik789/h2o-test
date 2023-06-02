@@ -1,0 +1,39 @@
+@import '../../utils/variables.scss';
+
+.mainContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menuStick {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menuContainer {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.menuList {
+  display: flex;
+  gap: 20px;
+  border-bottom: 1px solid #D2D1D1;
+}
+
+.menuListElement {
+  cursor: pointer;
+  padding: 15px 5px;
+}
+
+.menuListElementInactive {
+  color: #D2D1D1;
+}
+
+.menuListElementActive {
+  font-weight: bold;
+  border-bottom: 3px solid $mainColor;
+}
