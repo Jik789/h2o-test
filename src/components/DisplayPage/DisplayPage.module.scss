@@ -1,0 +1,10 @@
+.mainContainer {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.visibleSelect {
+  outline: none;
+  align-self: flex-end;
+}

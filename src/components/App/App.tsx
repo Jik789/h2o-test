@@ -1,4 +1,3 @@
-import CalendarPage from '../../page/CalendarPage/CalendarPage';
 import MainPage from '../../page/MainPage/MainPage';
 import HeaderMenu from '../HeaderMenu/HeaderMenu';
 import Navigation from '../Navigation/Navigation';

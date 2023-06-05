@@ -1,6 +1,8 @@
+import DisplayPage from '../../components/DisplayPage/DisplayPage';
+import Pagination from '../../components/Pagination/Pagination';
 import Search from '../../components/Search/Search';
 import Table from '../../components/Table/Table';
-import { MOCK_DATA } from '../../utils/const';
+import { MOCK_DATA } from '../../utils/mock';
 import styles from './MainPage.module.scss';
 
 function MainPage() {
@@ -19,6 +21,11 @@ function MainPage() {
       </div>
       <div className={styles.tableContainer}>
         <Table itemList={MOCK_DATA} />
+      </div>
+      <div className={styles.mainFooter}>
+        <p>показано 21-30 из 89 результатов</p>
+        <Pagination totalItems={340} />
+        <DisplayPage />
       </div>
     </>
   );
