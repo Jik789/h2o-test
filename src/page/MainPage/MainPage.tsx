@@ -8,7 +8,7 @@ import styles from './MainPage.module.scss';
 function MainPage() {
   return (
     <>
-      <h2 className={styles.mainPageName}>Общая база сотрудников</h2>
+      <h2 className={styles.mainPageName}>Общая база сотрудников, страница 2</h2>
       <div className={styles.mainPahePanel}>
         <div className={styles.contactAndSearch}>
           <div className={styles.contact}>

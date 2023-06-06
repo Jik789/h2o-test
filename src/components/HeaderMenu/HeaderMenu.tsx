@@ -2,6 +2,7 @@ import styles from './HeaderMenu.module.scss';
 import UserMiniProfile from './UserMiniProfile/UserMiniProfile';
 import stickRight from '../../image/stickRight.svg';
 import stickLeft from '../../image/stickLeft.svg';
+import { Link } from 'react-router-dom';
 
 function HeaderMenu() {
   return (
@@ -16,15 +17,21 @@ function HeaderMenu() {
           </a>
         </div>
         <ul className={styles.menuList}>
-          <li className={`${styles.menuListElement} ${styles.menuListElementInactive}`}>
-            База анкет сотрудников
-          </li>
-          <li className={`${styles.menuListElement} ${styles.menuListElementActive}`}>
-            Общая база сотрудников
-          </li>
-          <li className={`${styles.menuListElement} ${styles.menuListElementInactive}`}>
-            Календарь сотрудников
-          </li>
+          <Link
+            to="/base"
+            className={`${styles.menuListElement} ${styles.menuListElementInactive}`}
+          >
+            <li>База анкет сотрудников</li>
+          </Link>
+          <Link to="/" className={`${styles.menuListElement} ${styles.menuListElementActive}`}>
+            <li>Общая база сотрудников</li>
+          </Link>
+          <Link
+            to="/calendar"
+            className={`${styles.menuListElement} ${styles.menuListElementInactive}`}
+          >
+            <li>Календарь сотрудников</li>
+          </Link>
         </ul>
       </div>
       <UserMiniProfile />
