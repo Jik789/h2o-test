@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styles from './HeaderMenu.module.scss';
 import UserMiniProfile from './UserMiniProfile/UserMiniProfile';
 import stickRight from '../../image/stickRight.svg';
@@ -7,10 +7,19 @@ import stickLeft from '../../image/stickLeft.svg';
 import { IHeaderMenu } from '../../utils/interfaces';
 
 function HeaderMenu() {
+  const pages: IHeaderMenu[] = [
+    { page: '1', path: '/base', label: 'База анкет сотрудников' },
+    { page: '2', path: '/', label: 'Общая база сотрудников' },
+    { page: '3', path: '/calendar', label: 'Календарь сотрудников' },
+  ];
+
   const [isActivePage, setIsActivePage] = useState<string>('2');
+  const navigate = useNavigate();
 
   const handleChangePage = (page: string) => {
     setIsActivePage(page);
+    const route = pages.find((route) => route.page === page);
+    navigate(route?.path ?? '/');
   };
 
   const handlePrevPage = () => {
@@ -27,12 +36,6 @@ function HeaderMenu() {
     }
   };
 
-  const pages: IHeaderMenu[] = [
-    { page: '1', path: '/base', label: 'База анкет сотрудников' },
-    { page: '2', path: '/', label: 'Общая база сотрудников' },
-    { page: '3', path: '/calendar', label: 'Календарь сотрудников' },
-  ];
-
   return (
     <div className={styles.mainContainer}>
       <div className={styles.menuContainer}>
@@ -46,9 +49,8 @@ function HeaderMenu() {
         </div>
         <ul className={styles.menuList}>
           {pages.map((page) => (
-            <Link
+            <li
               key={page.page}
-              to={page.path}
               onClick={() => handleChangePage(page.page)}
               className={`${styles.menuListElement} ${
                 isActivePage === page.page
@@ -56,8 +58,8 @@ function HeaderMenu() {
                   : styles.menuListElementInactive
               }`}
             >
-              <li>{page.label}</li>
-            </Link>
+              {page.label}
+            </li>
           ))}
         </ul>
       </div>
