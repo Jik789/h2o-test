@@ -1,12 +1,15 @@
-import DisplayPage from '../../components/DisplayPage/DisplayPage';
+import DisplayInPage from '../../components/DisplayPage/DisplayInPage';
 import Pagination from '../../components/Pagination/Pagination';
 import Search from '../../components/Search/Search';
+import ShowResult from '../../components/ShowResult/ShowResult';
 import Table from '../../components/Table/Table';
 import { useAppSelector } from '../../store/store';
 import styles from './MainPage.module.scss';
 
 function MainPage() {
-  const userDataSelector = useAppSelector((state) => state.userData.filteredData);
+  const userDataSelector = useAppSelector((state) => state.userData);
+  const userData = userDataSelector.filteredData;
+  const userInPage = userDataSelector.userInPage;
 
   return (
     <>
@@ -14,7 +17,7 @@ function MainPage() {
       <div className={styles.mainPahePanel}>
         <div className={styles.contactAndSearch}>
           <div className={styles.contact}>
-            <h3 className={styles.contactTitle}>{userDataSelector.length}</h3>
+            <h3 className={styles.contactTitle}>{userData.length}</h3>
             <p>Контактов</p>
           </div>
           <Search />
@@ -22,12 +25,12 @@ function MainPage() {
         <button className={styles.editButton}>Режим редактирования</button>
       </div>
       <div className={styles.tableContainer}>
-        <Table itemList={userDataSelector} />
+        <Table itemList={userData} />
       </div>
       <div className={styles.mainFooter}>
-        <p>показано 21-30 из 89 результатов</p>
-        <Pagination totalItems={340} />
-        <DisplayPage />
+        <ShowResult />
+        <Pagination totalItems={userData.length} />
+        <DisplayInPage userInPage={userInPage} />
       </div>
     </>
   );

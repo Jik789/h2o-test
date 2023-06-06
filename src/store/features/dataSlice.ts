@@ -6,8 +6,9 @@ import { isSubstringIgnoreCase } from '../../utils/utls';
 const initialState = {
   originalData: MOCK_DATA,
   filteredData: MOCK_DATA,
+  userInPage: 3,
+  paginationPage: 1,
 };
-console.log(initialState);
 
 export const userDataSlice = createSlice({
   name: 'userData',
@@ -18,12 +19,15 @@ export const userDataSlice = createSlice({
         isSubstringIgnoreCase(item.mainInfo.userName, action.payload)
       );
     },
-    inputPage: () => {
-      // state.mainInfo.userName = action.payload;
+    changeUserInPage: (state, action: PayloadAction<string>) => {
+      state.userInPage = Number(action.payload);
+    },
+    changePaginationPage: (state, action: PayloadAction<number>) => {
+      state.paginationPage = action.payload;
     },
   },
 });
 
-export const { searchForName, inputPage } = userDataSlice.actions;
+export const { searchForName, changeUserInPage, changePaginationPage } = userDataSlice.actions;
 
 export default userDataSlice.reducer;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useAppSelector } from '../../store/store';
 import { ITable } from '../../utils/interfaces';
 import styles from './Table.module.scss';
 import TableItem from './TableItem/TableItem';
@@ -8,6 +9,15 @@ interface ITableProps {
 }
 
 function Table({ itemList }: ITableProps) {
+  const userDataSelector = useAppSelector((state) => state.userData);
+
+  const userInPage = userDataSelector.userInPage;
+  const paginationPage = userDataSelector.paginationPage;
+
+  const startIndex = (paginationPage - 1) * userInPage;
+  const endIndex = startIndex + userInPage;
+  const displayedItems = itemList.slice(startIndex, endIndex);
+
   return (
     <table className={styles.table}>
       {itemList.length > 0 && (
@@ -45,9 +55,10 @@ function Table({ itemList }: ITableProps) {
         </thead>
       )}
       <tbody>
-        {itemList.map((item, index) => (
-          <TableItem item={item} index={index + 1} key={item.mainInfo.userID} />
-        ))}
+        {displayedItems.map((item, index) => {
+          const originalIndex = startIndex + index;
+          return <TableItem item={item} index={originalIndex + 1} key={item.mainInfo.userID} />;
+        })}
       </tbody>
     </table>
   );

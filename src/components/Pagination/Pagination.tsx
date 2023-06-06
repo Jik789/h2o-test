@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { changePaginationPage } from '../../store/features/dataSlice';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import styles from './Pagination.module.scss';
 
 interface PaginationProps {
@@ -6,26 +8,30 @@ interface PaginationProps {
 }
 
 const Pagination: React.FC<PaginationProps> = ({ totalItems }) => {
-  const itemsPerPage = 10; // Количество элементов на странице
-  const totalPages = Math.ceil(totalItems / itemsPerPage); // Общее количество страниц
-  const [currentPage, setCurrentPage] = useState(1); // Текущая страница
+  const dispatch = useAppDispatch();
+
+  const userDataSelector = useAppSelector((state) => state.userData);
+  const userInPage = userDataSelector.userInPage;
+  const paginationPage = userDataSelector.paginationPage;
+
+  const totalPages = Math.ceil(totalItems / userInPage); // Общее количество страниц
 
   // Обработчик клика на номер страницы
   const handlePageClick = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+    dispatch(changePaginationPage(pageNumber));
   };
 
   // Обработчик клика на стрелку влево
   const handlePrevClick = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
+    if (paginationPage > 1) {
+      dispatch(changePaginationPage(paginationPage - 1));
     }
   };
 
   // Обработчик клика на стрелку вправо
   const handleNextClick = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
+    if (paginationPage < totalPages) {
+      dispatch(changePaginationPage(paginationPage + 1));
     }
   };
 
@@ -39,12 +45,12 @@ const Pagination: React.FC<PaginationProps> = ({ totalItems }) => {
     }
   } else {
     let startPage;
-    if (currentPage <= Math.ceil(maxVisiblePages / 2)) {
+    if (paginationPage <= Math.ceil(maxVisiblePages / 2)) {
       startPage = 1;
-    } else if (currentPage + Math.floor(maxVisiblePages / 2) > totalPages) {
+    } else if (paginationPage + Math.floor(maxVisiblePages / 2) > totalPages) {
       startPage = totalPages - maxVisiblePages + 1;
     } else {
-      startPage = currentPage - Math.floor(maxVisiblePages / 2);
+      startPage = paginationPage - Math.floor(maxVisiblePages / 2);
     }
 
     for (let i = 0; i < maxVisiblePages; i++) {
@@ -54,7 +60,11 @@ const Pagination: React.FC<PaginationProps> = ({ totalItems }) => {
 
   return (
     <div className={styles.pagination}>
-      <button className={styles.arrowButton} disabled={currentPage === 1} onClick={handlePrevClick}>
+      <button
+        className={styles.arrowButton}
+        disabled={paginationPage === 1}
+        onClick={handlePrevClick}
+      >
         &lt;
       </button>
 
@@ -62,7 +72,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalItems }) => {
         {pageNumbers.map((pageNumber) => (
           <li
             key={pageNumber}
-            className={pageNumber === currentPage ? styles.active : ''}
+            className={pageNumber === paginationPage ? styles.active : ''}
             onClick={() => handlePageClick(pageNumber)}
           >
             {pageNumber}
@@ -72,7 +82,7 @@ const Pagination: React.FC<PaginationProps> = ({ totalItems }) => {
 
       <button
         className={styles.arrowButton}
-        disabled={currentPage === totalPages}
+        disabled={paginationPage === totalPages}
         onClick={handleNextClick}
       >
         &gt;
