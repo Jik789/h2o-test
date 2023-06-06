@@ -1,14 +1,28 @@
 import styles from './Search.module.scss';
 import searchIcon from '../../image/searchIcon.svg';
+import { useAppDispatch } from '../../store/store';
+import { useState } from 'react';
+import { searchForName } from '../../store/features/dataSlice';
 
 function Search() {
+  const [inputName, setInputName] = useState('');
+  const dispatch = useAppDispatch();
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setInputName(event.target.value);
+  };
+
+  const handleSearch = () => {
+    dispatch(searchForName(inputName));
+  };
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.searchInput}>
-        <input type="text" placeholder="Поиск" />
+        <input type="text" placeholder="Поиск" onChange={handleInputChange} />
         <img className={styles.icon} src={searchIcon} alt="searchIcon" />
       </div>
-      <button>Искать</button>
+      <button onClick={handleSearch}>Искать</button>
     </div>
   );
 }

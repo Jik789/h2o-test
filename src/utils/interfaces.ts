@@ -6,7 +6,7 @@ interface IButton {
 interface ITableMainInfo {
   userName: string;
   userID: number;
-  userTelephone: number;
+  userTelephone: string;
   userSex: string;
   userBirthday: number;
   userMetro: string;
@@ -15,7 +15,7 @@ interface ITableMainInfo {
 
 interface ITableBankInfo {
   userBank: string;
-  userCardNumber: number;
+  userCardNumber: string;
 }
 
 interface ITableHrInfo {

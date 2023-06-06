@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
-import inputRepoSliceReducer from './features/inputRepoSlice';
+import userDataSliceReducer from './features/dataSlice';
 
 export const store = configureStore({
   reducer: {
-    inputValue: inputRepoSliceReducer,
+    userData: userDataSliceReducer,
   },
 });
 
