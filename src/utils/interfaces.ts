@@ -33,4 +33,10 @@ interface ITable {
   HrInfo: ITableHrInfo;
 }
 
-export type { IButton, ITable };
+interface IHeaderMenu {
+  page: string;
+  path: string;
+  label: string;
+}
+
+export type { IButton, ITable, IHeaderMenu };
