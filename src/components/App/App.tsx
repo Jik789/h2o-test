@@ -3,24 +3,18 @@ import BasePage from '../../page/BasePage/BasePage';
 import CalendarPage from '../../page/CalendarPage/CalendarPage';
 import MainPage from '../../page/MainPage/MainPage';
 import NotFoundPage from '../../page/NotFoundPage/NotFoundPage';
-import HeaderMenu from '../HeaderMenu/HeaderMenu';
-import Navigation from '../Navigation/Navigation';
-import styles from './App.module.scss';
+import Layout from '../Layout/Layout';
 
 function App() {
   return (
-    <div className={styles.appContainer}>
-      <Navigation />
-      <div className={styles.mainContainer}>
-        <HeaderMenu />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/calendar" element={<CalendarPage />} />
-          <Route path="/base" element={<BasePage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </div>
-    </div>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index path="/" element={<MainPage />} />
+        <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/base" element={<BasePage />} />
+      </Route>
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 
