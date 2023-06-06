@@ -1,8 +1,11 @@
 import React from 'react';
-import { useAppSelector } from '../../store/store';
+import { useAppDispatch, useAppSelector } from '../../store/store';
 import { ITable } from '../../utils/interfaces';
 import styles from './Table.module.scss';
 import TableItem from './TableItem/TableItem';
+import stickBottom from '../../image/stickBottom.svg';
+import stickTop from '../../image/stickTop.svg';
+import { sortUserDataByName } from '../../store/features/dataSlice';
 
 interface ITableProps {
   itemList: ITable[];
@@ -10,13 +13,19 @@ interface ITableProps {
 
 function Table({ itemList }: ITableProps) {
   const userDataSelector = useAppSelector((state) => state.userData);
+  const dispatch = useAppDispatch();
 
   const userInPage = userDataSelector.userInPage;
   const paginationPage = userDataSelector.paginationPage;
+  const currentSort = userDataSelector.currentSort;
 
   const startIndex = (paginationPage - 1) * userInPage;
   const endIndex = startIndex + userInPage;
   const displayedItems = itemList.slice(startIndex, endIndex);
+
+  const handleSortByName = () => {
+    dispatch(sortUserDataByName());
+  };
 
   return (
     <table className={styles.table}>
@@ -27,7 +36,7 @@ function Table({ itemList }: ITableProps) {
             <th className={styles.elementBorder} colSpan={7}>
               Основная информация
             </th>
-            <th className={styles.elementBorder} colSpan={2}>
+            <th className={styles.elementBorder} colSpan={3}>
               Банковская информация
             </th>
             <th className={styles.elementBorder} colSpan={6}>
@@ -36,7 +45,12 @@ function Table({ itemList }: ITableProps) {
           </tr>
           <tr>
             <th>№</th>
-            <th>Имя</th>
+            <th className={styles.elementTh}>
+              <p>Имя</p>
+              <span onClick={handleSortByName}>
+                <img src={currentSort === 'top' ? stickTop : stickBottom} alt={stickBottom}></img>
+              </span>
+            </th>
             <th>ID</th>
             <th>Телефон</th>
             <th>Пол</th>
@@ -44,7 +58,8 @@ function Table({ itemList }: ITableProps) {
             <th>Метро</th>
             <th className={styles.elementBorder}>Адрес</th>
             <th>Банк</th>
-            <th className={styles.elementBorder}>Номер карты</th>
+            <th>Номер карты</th>
+            <th className={styles.elementBorder}>Срок действия</th>
             <th>Должность</th>
             <th>Отдел</th>
             <th>Решение</th>

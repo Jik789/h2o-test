@@ -18,7 +18,8 @@ function TableItem({ item, index }: ITableItemProps) {
       <td>{item.mainInfo.userMetro}</td>
       <td className={styles.elementBorder}>{item.mainInfo.userAddress}</td>
       <td>{item.bankInfo.userBank}</td>
-      <td className={styles.elementBorder}>{item.bankInfo.userCardNumber}</td>
+      <td>{item.bankInfo.userCardNumber}</td>
+      <td className={styles.elementBorder}>{item.bankInfo.userCardValidDate}</td>
       <td>{item.HrInfo.userPost}</td>
       <td>{item.HrInfo.userDivision}</td>
       <td>{item.HrInfo.userSolution}</td>

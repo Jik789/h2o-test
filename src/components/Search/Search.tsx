@@ -2,7 +2,7 @@ import styles from './Search.module.scss';
 import searchIcon from '../../image/searchIcon.svg';
 import { useAppDispatch } from '../../store/store';
 import { useState } from 'react';
-import { searchForName } from '../../store/features/dataSlice';
+import { changePaginationPage, searchForName } from '../../store/features/dataSlice';
 
 function Search() {
   const [inputName, setInputName] = useState('');
@@ -14,6 +14,7 @@ function Search() {
 
   const handleSearch = () => {
     dispatch(searchForName(inputName));
+    dispatch(changePaginationPage(1));
   };
 
   return (

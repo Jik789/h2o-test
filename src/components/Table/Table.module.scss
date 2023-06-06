@@ -54,3 +54,20 @@
 .table .elementBorder {
   border-right: 2px solid $mainColor;
 }
+
+.elementTh {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  span {
+    display: flex;
+    cursor: pointer;
+    padding: 5px;
+    align-items: center;
+    img {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}

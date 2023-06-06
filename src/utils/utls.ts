@@ -21,6 +21,7 @@ function generateObjects(count: number) {
       bankInfo: {
         userBank: generateRandomBank(),
         userCardNumber: generateRandomCardNumber(),
+        userCardValidDate: generateRandomCardValidDate(),
       },
       HrInfo: {
         userPost: generateRandomJobTitle(),
@@ -99,12 +100,12 @@ function generateRandomSex() {
 // Генерация случайной даты рождения
 function generateRandomBirthday() {
   const start = new Date(1970, 0, 1);
-  const end = new Date(2005, 11, 31);
+  const end = new Date(2004, 11, 31);
   const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   const year = randomDate.getFullYear();
   const month = String(randomDate.getMonth() + 1).padStart(2, '0');
   const day = String(randomDate.getDate()).padStart(2, '0');
-  return Number(`${year}${month}${day}`);
+  return `${day}.${month}.${year}`;
 }
 
 // Генерация случайной станции метро
@@ -158,7 +159,18 @@ function generateRandomSource() {
 // Генерация случайной даты решения
 function generateRandomSolutionDate() {
   const start = new Date(2022, 0, 1);
-  const end = new Date(2023, 11, 31);
+  const end = new Date(2025, 11, 31);
+  const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  const year = randomDate.getFullYear();
+  const month = String(randomDate.getMonth() + 1).padStart(2, '0');
+  const day = String(randomDate.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+// Генерация случайной даты решения
+function generateRandomCardValidDate() {
+  const start = new Date(2022, 0, 1);
+  const end = new Date(2025, 11, 31);
   const randomDate = new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
   const year = randomDate.getFullYear();
   const month = String(randomDate.getMonth() + 1).padStart(2, '0');

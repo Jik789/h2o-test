@@ -8,7 +8,7 @@ interface ITableMainInfo {
   userID: number;
   userTelephone: string;
   userSex: string;
-  userBirthday: number;
+  userBirthday: string;
   userMetro: string;
   userAddress: string;
 }
@@ -16,6 +16,7 @@ interface ITableMainInfo {
 interface ITableBankInfo {
   userBank: string;
   userCardNumber: string;
+  userCardValidDate: string;
 }
 
 interface ITableHrInfo {

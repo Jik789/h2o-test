@@ -1,6 +1,6 @@
 import styles from './UserMiniProfile.module.scss';
 import userAvatar from '../../../image/userAvatar.png';
-import userStickBottom from '../../../image/userStickBottom.svg';
+import stickBottom from '../../../image/stickBottom.svg';
 
 function UserMiniProfile() {
   return (
@@ -13,7 +13,7 @@ function UserMiniProfile() {
         <p className={styles.userPost}>Менеджер продаж</p>
       </div>
       <a className={styles.imageContainer}>
-        <img src={userStickBottom} alt="right" />
+        <img src={stickBottom} alt="right" />
       </a>
     </div>
   );
