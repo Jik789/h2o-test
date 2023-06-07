@@ -1,22 +1,34 @@
-<h1 align="center">Тестовое задание</h1>
+<h1 align="center">Тестовое задание в H20</h1>
 
-## Description
+## Описание
 
 Ссылка на деплой приложения: 
+Реализованные задания:
+- Таблица данных с возможностью сортировки по имени и id
+- Пагинация
+- Поиск по таблице
+- Отметка истекших дат
+- Вкладки страниц
+- Навбар
+- Количество отображаемых элементов
+- Отображение количества данных
+- Роутинг
 
-#### Technical Stack
+
+#### Технический стек
 
 - [TypeScript](https://www.typescriptlang.org/)
 - [React](https://reactjs.org)
+- [Redux](https://redux-toolkit.js.org/)
 
-#### Additional tools
+#### Дополнительные инструменты
 
 - husky
 - eslint
 - vite
 - prettier
 
-## Installation and startup
+## Установка и запуск приложения
 
 ```bash
 $ npm install
