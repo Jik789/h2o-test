@@ -1,5 +1,6 @@
 import styles from './TableItem.module.scss';
 import { ITable } from '../../../utils/interfaces';
+import { isDateExpired } from '../../../utils/utls';
 
 interface ITableItemProps {
   item: ITable;
@@ -19,7 +20,15 @@ function TableItem({ item, index }: ITableItemProps) {
       <td className={styles.elementBorder}>{item.mainInfo.userAddress}</td>
       <td>{item.bankInfo.userBank}</td>
       <td>{item.bankInfo.userCardNumber}</td>
-      <td className={styles.elementBorder}>{item.bankInfo.userCardValidDate}</td>
+      <td className={styles.elementBorder}>
+        <p
+          className={`${
+            isDateExpired(item.bankInfo.userCardValidDate) ? styles.elementDataExpired : ''
+          }`}
+        >
+          {item.bankInfo.userCardValidDate}
+        </p>
+      </td>
       <td>{item.HrInfo.userPost}</td>
       <td>{item.HrInfo.userDivision}</td>
       <td>{item.HrInfo.userSolution}</td>

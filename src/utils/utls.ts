@@ -184,4 +184,15 @@ function generateRandomNote() {
   return notes[Math.floor(Math.random() * notes.length)];
 }
 
-export { isSubstringIgnoreCase, generateObjects };
+function isDateExpired(date: string) {
+  const currentDate = new Date();
+  const inputDate = new Date(date);
+
+  // Устанавливаем время в полночь для обеих дат
+  currentDate.setHours(0, 0, 0, 0);
+  inputDate.setHours(0, 0, 0, 0);
+
+  return inputDate < currentDate;
+}
+
+export { isSubstringIgnoreCase, generateObjects, isDateExpired };
