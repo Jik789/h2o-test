@@ -5,7 +5,7 @@ import styles from './Table.module.scss';
 import TableItem from './TableItem/TableItem';
 import stickBottom from '../../image/stickBottom.svg';
 import stickTop from '../../image/stickTop.svg';
-import { sortUserDataByName } from '../../store/features/dataSlice';
+import { sortUserDataById, sortUserDataByName } from '../../store/features/dataSlice';
 
 interface ITableProps {
   itemList: ITable[];
@@ -17,7 +17,8 @@ function Table({ itemList }: ITableProps) {
 
   const userInPage = userDataSelector.userInPage;
   const paginationPage = userDataSelector.paginationPage;
-  const currentSort = userDataSelector.currentSort;
+  const currentSortByName = userDataSelector.currentSortByName;
+  const currentSortById = userDataSelector.currentSortById;
 
   const startIndex = (paginationPage - 1) * userInPage;
   const endIndex = startIndex + userInPage;
@@ -25,6 +26,10 @@ function Table({ itemList }: ITableProps) {
 
   const handleSortByName = () => {
     dispatch(sortUserDataByName());
+  };
+
+  const handleSortById = () => {
+    dispatch(sortUserDataById());
   };
 
   return (
@@ -45,13 +50,25 @@ function Table({ itemList }: ITableProps) {
           </tr>
           <tr>
             <th>№</th>
-            <th className={styles.elementTh}>
-              <p>Имя</p>
-              <span onClick={handleSortByName}>
-                <img src={currentSort === 'top' ? stickTop : stickBottom} alt={stickBottom}></img>
-              </span>
+            <th>
+              <div className={styles.elementTh}>
+                <p>Имя</p>
+                <span onClick={handleSortByName}>
+                  <img
+                    src={currentSortByName === 'asc' ? stickTop : stickBottom}
+                    alt={stickBottom}
+                  />
+                </span>
+              </div>
             </th>
-            <th>ID</th>
+            <th>
+              <div className={styles.elementTh}>
+                <p>ID</p>
+                <span onClick={handleSortById}>
+                  <img src={currentSortById === 'asc' ? stickTop : stickBottom} alt={stickBottom} />
+                </span>
+              </div>
+            </th>
             <th>Телефон</th>
             <th>Пол</th>
             <th>Дата рождения</th>

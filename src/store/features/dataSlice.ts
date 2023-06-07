@@ -8,7 +8,8 @@ const initialState = {
   filteredData: MOCK_DATA,
   userInPage: 3,
   paginationPage: 1,
-  currentSort: 'top',
+  currentSortByName: 'asc',
+  currentSortById: 'asc',
 };
 
 export const userDataSlice = createSlice({
@@ -27,9 +28,9 @@ export const userDataSlice = createSlice({
       state.paginationPage = action.payload;
     },
     sortUserDataByName: (state) => {
-      const sortOrder = state.currentSort === 'top' ? 1 : -1;
+      const sortOrder = state.currentSortByName === 'asc' ? 1 : -1;
 
-      state.currentSort = state.currentSort === 'top' ? 'bottom' : 'top';
+      state.currentSortByName = state.currentSortByName === 'asc' ? 'desc' : 'asc';
       state.filteredData = state.filteredData.sort((a, b) => {
         const nameA = a.mainInfo.userName.toUpperCase();
         const nameB = b.mainInfo.userName.toUpperCase();
@@ -39,10 +40,22 @@ export const userDataSlice = createSlice({
         return 0;
       });
     },
+    sortUserDataById: (state) => {
+      const sortOrder = state.currentSortById === 'asc' ? 1 : -1;
+      state.currentSortById = state.currentSortById === 'asc' ? 'desc' : 'asc';
+      state.filteredData = state.filteredData.sort(
+        (a, b) => sortOrder * (a.mainInfo.userID - b.mainInfo.userID)
+      );
+    },
   },
 });
 
-export const { searchForName, changeUserInPage, changePaginationPage, sortUserDataByName } =
-  userDataSlice.actions;
+export const {
+  searchForName,
+  changeUserInPage,
+  changePaginationPage,
+  sortUserDataByName,
+  sortUserDataById,
+} = userDataSlice.actions;
 
 export default userDataSlice.reducer;

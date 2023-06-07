@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './HeaderMenu.module.scss';
 import UserMiniProfile from './UserMiniProfile/UserMiniProfile';
@@ -15,6 +15,17 @@ function HeaderMenu() {
 
   const [isActivePage, setIsActivePage] = useState<string>('2');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedActivePage = localStorage.getItem('isActivePage');
+    if (storedActivePage && pages.some((page) => page.page === storedActivePage)) {
+      setIsActivePage(storedActivePage);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('isActivePage', isActivePage);
+  }, [isActivePage]);
 
   const handleChangePage = (page: string) => {
     setIsActivePage(page);
