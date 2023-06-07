@@ -1,20 +1,15 @@
-import { Route, Routes } from 'react-router';
-import BasePage from '../../page/BasePage/BasePage';
-import CalendarPage from '../../page/CalendarPage/CalendarPage';
-import MainPage from '../../page/MainPage/MainPage';
-import NotFoundPage from '../../page/NotFoundPage/NotFoundPage';
-import Layout from '../Layout/Layout';
+import Navigation from '../Navigation/Navigation';
+import styles from './App.module.scss';
+import Routing from '../../Routing/Routing';
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Layout />}>
-        <Route index path="/" element={<MainPage />} />
-        <Route path="/calendar" element={<CalendarPage />} />
-        <Route path="/base" element={<BasePage />} />
-      </Route>
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+    <div className={styles.appContainer}>
+      <Navigation />
+      <div className={styles.mainContainer}>
+        <Routing />
+      </div>
+    </div>
   );
 }
 

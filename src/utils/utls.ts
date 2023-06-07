@@ -188,11 +188,14 @@ function isDateExpired(date: string) {
   const currentDate = new Date();
   const inputDate = new Date(date);
 
-  // Устанавливаем время в полночь для обеих дат
   currentDate.setHours(0, 0, 0, 0);
   inputDate.setHours(0, 0, 0, 0);
 
   return inputDate < currentDate;
 }
 
-export { isSubstringIgnoreCase, generateObjects, isDateExpired };
+function isUnitPath(path: string) {
+  return path.startsWith('/unit/');
+}
+
+export { isSubstringIgnoreCase, generateObjects, isDateExpired, isUnitPath };

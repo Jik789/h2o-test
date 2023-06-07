@@ -1,6 +1,6 @@
-import styles from './BasePage.module.scss';
+import styles from './UnitBasePage.module.scss';
 
-function BasePage() {
+function UnitBasePage() {
   return (
     <>
       <h2 className={styles.mainPageName}>База сотрудников, страница 1</h2>
@@ -8,4 +8,4 @@ function BasePage() {
   );
 }
 
-export default BasePage;
+export default UnitBasePage;

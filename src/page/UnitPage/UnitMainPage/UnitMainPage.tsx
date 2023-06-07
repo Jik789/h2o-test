@@ -1,12 +1,12 @@
-import DisplayInPage from '../../components/DisplayPage/DisplayInPage';
-import Pagination from '../../components/Pagination/Pagination';
-import Search from '../../components/Search/Search';
-import ShowResult from '../../components/ShowResult/ShowResult';
-import Table from '../../components/Table/Table';
-import { useAppSelector } from '../../store/store';
-import styles from './MainPage.module.scss';
+import DisplayInPage from '../../../components/DisplayPage/DisplayInPage';
+import Pagination from '../../../components/Pagination/Pagination';
+import Search from '../../../components/Search/Search';
+import ShowResult from '../../../components/ShowResult/ShowResult';
+import Table from '../../../components/Table/Table';
+import { useAppSelector } from '../../../store/store';
+import styles from './UnitMainPage.module.scss';
 
-function MainPage() {
+function UnitMainPage() {
   const userDataSelector = useAppSelector((state) => state.userData);
   const userData = userDataSelector.filteredData;
   const userInPage = userDataSelector.userInPage;
@@ -36,4 +36,4 @@ function MainPage() {
   );
 }
 
-export default MainPage;
+export default UnitMainPage;

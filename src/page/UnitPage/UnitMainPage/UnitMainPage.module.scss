@@ -1,4 +1,4 @@
-@import '../../utils/variables.scss';
+@import '../../../utils/variables.scss';
 
 .mainContainer {
   overflow-x: hidden;
@@ -47,6 +47,7 @@
 }
 
 .editButton {
+  cursor: not-allowed;
   margin-left: auto;
 }
 

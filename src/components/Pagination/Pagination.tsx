@@ -16,26 +16,22 @@ const Pagination: React.FC<PaginationProps> = ({ totalItems }) => {
 
   const totalPages = Math.ceil(totalItems / userInPage); // Общее количество страниц
 
-  // Обработчик клика на номер страницы
   const handlePageClick = (pageNumber: number) => {
     dispatch(changePaginationPage(pageNumber));
   };
 
-  // Обработчик клика на стрелку влево
   const handlePrevClick = () => {
     if (paginationPage > 1) {
       dispatch(changePaginationPage(paginationPage - 1));
     }
   };
 
-  // Обработчик клика на стрелку вправо
   const handleNextClick = () => {
     if (paginationPage < totalPages) {
       dispatch(changePaginationPage(paginationPage + 1));
     }
   };
 
-  // Формирование массива номеров страниц для отображения
   const pageNumbers = [];
   const maxVisiblePages = 10;
 

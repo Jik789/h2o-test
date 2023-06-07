@@ -8,9 +8,9 @@ import { IHeaderMenu } from '../../utils/interfaces';
 
 function HeaderMenu() {
   const pages: IHeaderMenu[] = [
-    { page: '1', path: '/base', label: 'База анкет сотрудников' },
+    { page: '1', path: '/unit/calendar', label: 'База анкет сотрудников' },
     { page: '2', path: '/', label: 'Общая база сотрудников' },
-    { page: '3', path: '/calendar', label: 'Календарь сотрудников' },
+    { page: '3', path: '/unit/calendar', label: 'Календарь сотрудников' },
   ];
 
   const [isActivePage, setIsActivePage] = useState<string>('2');
